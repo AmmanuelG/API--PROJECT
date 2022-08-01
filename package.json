@@ -20,5 +20,8 @@
   "bugs": {
     "url": "https://github.com/AmmanuelG/API--PROJECT/issues"
   },
-  "homepage": "https://github.com/AmmanuelG/API--PROJECT#readme"
+  "homepage": "https://github.com/AmmanuelG/API--PROJECT#readme",
+  "dependencies": {
+    "pg": "^8.7.3"
+  }
 }
