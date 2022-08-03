@@ -30,10 +30,7 @@ const validateSignup = [
 ];
 // Sign up
 // Sign up
-router.post(
-  '/',
-  validateSignup,
-  async (req, res) => {
+router.post( '/',validateSignup,  async (req, res) => {
     const { email, password, username } = req.body;
     const user = await User.signup({ email, username, password });
 
@@ -44,6 +41,13 @@ router.post(
     });
   }
 );
+
+
+
+
+
+
+
 module.exports = router;
 
 

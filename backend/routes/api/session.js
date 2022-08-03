@@ -97,6 +97,22 @@ router.post(
 
 
 
+//Returning the id,first, last, email, username
+
+router.get('/session',validateLogin, async (req, res, next) => {  
+  res.status(200)
+
+    const user = await User.findAll()
+
+    return res.json({user})
+  }
+);
+
+
+
+
+
+
 
 
 
