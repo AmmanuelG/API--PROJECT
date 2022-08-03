@@ -3,7 +3,7 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Spots extends Model {
+  class Spot extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -13,66 +13,56 @@ module.exports = (sequelize, DataTypes) => {
       // define association here
     }
   }
-  Spots.init({
-    name: {
+  Spot.init({
+    ownerId: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique:true,
+      references:{model:"Users"}
     },
     address: {
-      type: DataTypes.VARCHAR(30),
+      type: DataTypes.STRING,
       allowNull: false,
-      validate: {
-        len: [3, 256],
-      }
+     unique:true
     },
     city: {
       type: DataTypes.STRING,
       allowNull: false,
     },
     state: {
-      allowNull: false,
-      type: Sequelize.STRING(30)
+      type: DataTypes.STRING,
+      allowNull: false
     },
     country: {
       allowNull: false,
-      type: Sequelize.STRING(30)
+      type: DataTypes.STRING
     },
     lat: {
       allowNull: false,
-      type:sequelize.DECIMAL,
-      unique: true  
+      type:DataTypes.DECIMAL,
+
     },
     lng:{
       allowNull: false,
-      type:sequelize.DECIMAL,
+      type:DataTypes.DECIMAL,
       unique: true
+    },
+    name:{
+      allowNull: false,
+      type: DataTypes.STRING,
     },
     description:{
       allowNull: false,
-      type: Sequelize.STRING,
+      type: DataTypes.STRING,
     },
     price:{
       allowNull: false,
-      type: Sequelize.INTEGER 
-    },
-    createdAt: {
-      allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
-    },
-    updatedAt: {
-      allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      type: DataTypes.INTEGER 
     }
   }, 
-  
-  
-  
-  
   {
     sequelize,
-    modelName: 'Spots',
+    modelName: 'Spot',
   });
-  return Spots;
+  return Spot;
 };

@@ -1,6 +1,7 @@
 'use strict';
 
-const { sequelize } = require("../models");
+const { ref } = require("firebase-functions/v1/database");
+
 
 module.exports = {
   async up(queryInterface, Sequelize)
@@ -12,6 +13,13 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       }, 
+      ownerId: {
+        allowNull: false,
+        type: Sequelize.INTEGER,
+        references: {
+          model: 'Users'
+        },
+      }, 
       name: { 
         type: Sequelize.STRING(30),
         allowNull: false,
@@ -19,7 +27,7 @@ module.exports = {
       },
       address: {
         allowNull: false,
-        type: Sequelize.VARCHAR(30),
+        type: Sequelize.STRING(30),
         unique: true
 
       },
@@ -37,18 +45,18 @@ module.exports = {
       },
       lat: {
         allowNull: false,
-        type:sequelize.DECIMAL,
+        type:Sequelize.DECIMAL,
         unique: true  
       },
 
       lng:{
         allowNull: false,
-        type:sequelize.DECIMAL,
+        type:Sequelize.DECIMAL,
         unique: true
       },
       description:{
         allowNull: false,
-        type: Sequelize.STRING,
+        type: Sequelize.STRING(30)
       },
 
       price:{
