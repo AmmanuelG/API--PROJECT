@@ -9,16 +9,22 @@ module.exports = (sequelize, DataTypes) => {
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
+
+    //Spots
     static associate(models) {
       // define association here
+      Spot.hasMany(models.Booking, { foreignKey: 'spotId' })
+      Spot.belongsTo(models.User, { foreignKey: 'ownerId' })
+
     }
+    
   }
   Spot.init({
     ownerId: {
       type: DataTypes.STRING,
       allowNull: false,
       unique:true,
-      references:{model:"Users"}
+
     },
     address: {
       type: DataTypes.STRING,
