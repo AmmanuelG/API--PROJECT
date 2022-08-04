@@ -1,7 +1,6 @@
 'use strict';
-const {
-  Model
-} = require('sequelize');
+const { Model} = require('sequelize');
+
 module.exports = (sequelize, DataTypes) =>
 {
   class Booking extends Model
@@ -33,18 +32,16 @@ module.exports = (sequelize, DataTypes) =>
     },
     startDate: {
       allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      type: DataTypes.DATE,
     },
     endDate: {
       allowNull: false,
-      type: Sequelize.DATE,
-      defaultValue: Sequelize.literal('CURRENT_TIMESTAMP')
+      type: DataTypes.DATE,
     }
 
   }, {
     sequelize,
-    modelName: 'Bookings',
+    modelName: 'Booking',
   });
   return Booking;
 };
